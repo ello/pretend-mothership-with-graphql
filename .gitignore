@@ -16,3 +16,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 .DS_Store
+# Added by webpack-rails
+/node_modules
+/public/webpack
+.tern-port
