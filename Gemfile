@@ -21,8 +21,6 @@ gem 'jbuilder', '~> 2.0'
 # Use Puma as the app server
 gem 'puma'
 
-gem 'bootstrap-sass', '~> 3.3.6'
-
 gem 'stringex'
 
 gem 'local_time'
@@ -64,3 +62,4 @@ group :development do
   gem("ruby-lint", require: false)
   gem("scss_lint", require: false)
 end
+gem 'bootstrap-sass'
