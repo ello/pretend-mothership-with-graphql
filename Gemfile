@@ -33,6 +33,7 @@ gem 'graphql'
 gem 'graphql-relay'
 
 gem 'webpack-rails'
+gem 'react_on_rails', '~> 2.0.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
