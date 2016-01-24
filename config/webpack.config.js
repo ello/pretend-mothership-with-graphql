@@ -17,6 +17,19 @@ var config = {
     'application': './webpack/application.js'
   },
 
+  module: {
+    loaders: [
+      {
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          plugins: ['./config/build/babelRelayPlugin'],
+          presets: ['react', 'es2015', 'stage-0']
+        },
+        test: /\.js$/
+      }
+    ]
+  },
   output: {
     // Build assets directly in to public/webpack/, let webpack know
     // that all webpacked assets start with webpack/

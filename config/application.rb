@@ -14,6 +14,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 require 'graphql_reloader'
+require 'relay_component_mount'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -21,6 +22,7 @@ Bundler.require(*Rails.groups)
 module ElloGraphqlWithViews
   class Application < Rails::Application
     config.middleware.use GraphQLReloader
+    config.react.view_helper_implementation = RelayComponentMount
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
