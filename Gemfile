@@ -25,8 +25,6 @@ gem 'stringex'
 
 gem 'local_time'
 
-gem 'react-rails', '~> 1.5.0'
-
 gem 'graphql'
 gem 'graphql-relay'
 
