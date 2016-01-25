@@ -28,6 +28,10 @@ config.module.loaders.push(
   {
     test: /\.jsx?$/,
     loader: 'babel-loader',
+    query: {
+      plugins: ['./config/build/babelRelayPlugin'],
+      presets: ['react', 'es2015', 'stage-0']
+    },
     exclude: /node_modules/,
   },
   {
