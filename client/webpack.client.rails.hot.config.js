@@ -6,26 +6,28 @@ const webpack = require('webpack');
 const path = require('path');
 const config = require('./webpack.client.base.config');
 
+const hotRailsPort = process.env.HOT_RAILS_PORT || 3500;
 config.entry.app.push(
 
   // Webpack dev server
-  'webpack-dev-server/client?http://localhost:4000',
-  'webpack/hot/dev-server',
+  `webpack-dev-server/client?http://localhost:${hotRailsPort}`,
+  'webpack/hot/only-dev-server',
+);
 
-  // See: https://github.com/shakacode/bootstrap-sass-loader
-  // We're using the bootstrap-sass loader.
-  'bootstrap-sass!./bootstrap-sass.config.js'
-
+config.entry.vendor.push(
+  'es5-shim/es5-shim',
+  'es5-shim/es5-sham',
+  'jquery-ujs',
+  'bootstrap-loader'
 );
 
 config.output = {
 
   // this file is served directly by webpack
   filename: '[name]-bundle.js',
-  path: __dirname,
+  path: path.join(__dirname, 'public'),
+  publicPath: `http://localhost:${hotRailsPort}/`,
 };
-config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
-config.devtool = 'eval-source-map';
 
 // All the styling loaders only apply to hot-reload, not rails
 config.module.loaders.push(
@@ -53,16 +55,27 @@ config.module.loaders.push(
   { test: /\.css$/, loader: 'style-loader!css-loader' },
   {
     test: /\.scss$/,
-    loader: 'style!css!sass?outputStyle=expanded&imagePath=/assets/images&includePaths[]=' +
-    path.resolve(__dirname, './assets/stylesheets'),
+    loaders: [
+      'style',
+      'css?modules&importLoaders=3&localIdentName=[name]__[local]__[hash:base64:5]',
+      'postcss',
+      'sass',
+      'sass-resources',
+    ],
   },
-
-  // The url-loader uses DataUrls. The file-loader emits files.
-  { test: /\.woff$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
-  { test: /\.woff2$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
-  { test: /\.ttf$/, loader: 'file-loader' },
-  { test: /\.eot$/, loader: 'file-loader' },
-  { test: /\.svg$/, loader: 'file-loader' }
+  {
+    test: require.resolve('jquery-ujs'),
+    loader: 'imports?jQuery=jquery',
+  },
 );
+
+config.plugins.push(
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin()
+);
+
+config.devtool = 'eval-source-map';
+
+console.log('Webpack dev build for Rails'); // eslint-disable-line no-console
 
 module.exports = config;
