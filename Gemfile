@@ -61,3 +61,5 @@ group :development do
 end
 
 gem 'bootstrap-sass'
+
+gem 'therubyracer', platforms: :ruby
