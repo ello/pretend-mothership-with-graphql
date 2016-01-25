@@ -9,9 +9,16 @@
   },
   "scripts": {
     "postinstall": "cd client && npm install",
-    "test": "rspec && (cd client && npm run lint)",
-    "express-server": "echo 'visit http://localhost:4000' && cd client && npm start",
-    "rails-server": "echo 'visit http://localhost:3000/hello_world' && foreman start -f Procfile.dev"
+    "test": "rspec && npm run test:client && npm run lint",
+    "test:client": "(cd client && npm run test --silent)",
+    "lint": "(cd client && npm run lint --silent)",
+    "build:clean": "rm app/assets/webpack/*",
+    "build:client": "(cd client && npm run build:client --silent)",
+    "build:server": "(cd client && npm run build:server --silent)",
+    "build:dev:client": "(cd client && npm run build:dev:client --silent)",
+    "build:dev:server": "(cd client && npm run build:dev:server --silent)",
+    "build:test:client": "(cd client && npm run build:test:client --silent)",
+    "start": "(cd client && npm run start --silent)"
   },
   "repository": {
     "type": "git",

@@ -59,4 +59,5 @@ group :development do
   gem("ruby-lint", require: false)
   gem("scss_lint", require: false)
 end
+
 gem 'bootstrap-sass'

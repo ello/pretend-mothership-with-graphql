@@ -28,13 +28,13 @@ module.exports = {
     alias: {
       lib: path.join(process.cwd(), 'app', 'lib'),
       react: path.resolve('./node_modules/react'),
-      'react-dom': path.resolve('./node_modules/react-dom'),
-    },
+      'react-dom': path.resolve('./node_modules/react-dom')
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(nodeEnv),
+        NODE_ENV: JSON.stringify(nodeEnv)
       },
     }),
 
@@ -49,15 +49,22 @@ module.exports = {
 
       // Passing Infinity just creates the commons chunk, but moves no modules into it.
       // In other words, we only put what's in the vendor entry definition in vendor-bundle.js
-      minChunks: Infinity,
+      minChunks: Infinity
     }),
   ],
   module: {
     loaders: [
 
+      { test: /\.(woff2?|svg)$/, loader: 'url?limit=10000' },
+      { test: /\.(ttf|eot)$/, loader: 'file' },
+      { test: /\.(jpe?g|png|gif|svg|ico)$/, loader: 'url?limit=10000' },
       // Not all apps require jQuery. Many Rails apps do, such as those using TurboLinks or bootstrap js
       { test: require.resolve('jquery'), loader: 'expose?jQuery' },
       { test: require.resolve('jquery'), loader: 'expose?$' },
+
+      { test: /bootstrap-sass\/assets\/javascripts\//, loader: 'imports?jQuery=jquery' },
+      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' },
     ],
   },
+  sassResources: ['./app/assets/styles/app-variables.scss'],
 };
