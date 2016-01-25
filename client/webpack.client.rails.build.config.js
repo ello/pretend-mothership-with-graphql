@@ -5,7 +5,7 @@
 const webpack = require('webpack'),
       ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const config = require('./webpack.client.base.config.js');
+const config = require('./webpack.client.base.config');
 
 const devBuild = process.env.NODE_ENV !== 'production';
 
