@@ -27,6 +27,7 @@ gem 'local_time'
 
 gem 'graphql'
 gem 'graphql-relay'
+gem 'graphiql-rails'
 
 gem 'react_on_rails', '~> 2.0.0'
 # Use ActiveModel has_secure_password

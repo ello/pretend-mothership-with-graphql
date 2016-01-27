@@ -10,7 +10,8 @@ module.exports = {
   context: __dirname,
   entry: [
     'babel-polyfill',
-    './app/bundles/HelloWorld/startup/serverRegistration'
+    './app/bundles/HelloWorld/startup/serverRegistration',
+    './app/bundles/Posts/startup/serverRegistration'
   ],
   output: {
     filename: 'server-bundle.js',
@@ -31,7 +32,15 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
+      {
+        test: /\.jsx?$/,
+        loader: 'babel',
+        query: {
+          plugins: ['../config/build/babelRelayPlugin.js'],
+          presets: ['react', 'es2015', 'stage-0'],
+        },
+        exclude: /node_modules/,
+      },
       {
         test: /\.css$/,
         loaders: [

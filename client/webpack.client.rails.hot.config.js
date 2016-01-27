@@ -36,21 +36,25 @@ config.module.loaders.push(
     loader: 'babel',
     exclude: /node_modules/,
     query: {
-      plugins: [
-        [
-          'react-transform',
-          {
-            transforms: [
-              {
-                transform: 'react-transform-hmr',
-                imports: ['react'],
-                locals: ['module'],
-              },
-            ],
-          },
-        ],
-      ],
+      plugins: ['../config/build/babelRelayPlugin'],
+      presets: ['react', 'es2015', 'stage-0']
     },
+    // query: {
+    //   plugins: [
+    //     [
+    //       'react-transform',
+    //       {
+    //         transforms: [
+    //           {
+    //             transform: 'react-transform-hmr',
+    //             imports: ['react'],
+    //             locals: ['module'],
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   ],
+    // },
   },
   { test: /\.css$/, loader: 'style-loader!css-loader' },
   {

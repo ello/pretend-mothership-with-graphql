@@ -26,7 +26,11 @@ config.entry.vendor.unshift(
 config.module.loaders.push(
   {
     test: /\.jsx?$/,
-    loader: 'babel-loader',
+    loader: 'babel',
+    query: {
+      plugins: ['../config/build/babelRelayPlugin.js'],
+      presets: ['react', 'es2015', 'stage-0']
+    },
     exclude: /node_modules/,
   },
   {

@@ -104,6 +104,8 @@ GEM
       thor (~> 0.19.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    graphiql-rails (1.0.1)
+      rails
     graphql (0.10.9)
       parslet (~> 1.6)
     graphql-relay (0.6.1)
@@ -230,6 +232,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   foreman
+  graphiql-rails
   graphql
   graphql-relay
   jbuilder (~> 2.0)
