@@ -4,7 +4,10 @@ class GraphqlController < ApplicationController
     result = ::RelaySchema.execute(
       params[:query],
       debug: true,
-      variables: params[:variables]
+      variables: params[:variables],
+      context: {
+        current_user: (p current_user)
+      }
     )
     render json: result
   end
