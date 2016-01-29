@@ -6,7 +6,7 @@ class GraphqlController < ApplicationController
       debug: true,
       variables: params[:variables],
       context: {
-        current_user: (p current_user)
+        current_user: current_user
       }
     )
     render json: result
