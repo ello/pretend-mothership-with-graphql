@@ -6,7 +6,7 @@ Knock.setup do |config|
   ## The attribute used to uniquely identify a user.
   ##
   ## Default:
-  # config.handle_attr = :email
+  config.handle_attr = :username
 
   ## Current user retrieval from handle when signing in
   ## --------------------------------------------------
