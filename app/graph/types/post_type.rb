@@ -19,6 +19,8 @@ end
 PostType = GraphQL::ObjectType.define do
   name 'Post'
   description 'A single post entry returns a post with author'
+  interfaces [NodeIdentification.interface]
+  global_id_field :id
   field :id, types.ID, 'ID of this post'
   field :body, field: body_field
   field :content, types.String, property: :token
