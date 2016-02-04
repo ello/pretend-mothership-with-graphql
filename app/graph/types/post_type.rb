@@ -18,4 +18,10 @@ PostType = GraphQL::ObjectType.define do
   field :content, types.String, property: :token
   field :author, UserType, "Author of the post"
   field :created_at, types.String, "Creation date of post"
+
+  connection :comments, -> { PostType.connection_type } do
+    resolve ->(post, _args, _ctx) {
+      comments = Post.comments_for(post.id)
+    }
+  end
 end
